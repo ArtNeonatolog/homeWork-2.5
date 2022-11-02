@@ -3,10 +3,10 @@ package drivers;
 import transport.Car;
 import transport.PassengerCar;
 
-public class DriverB extends Driver {
+public class DriverB extends Driver<Car> {
 
-    public DriverB(String name, boolean driverLicense, int drivingExperience, PassengerCar transport) {
-        super(name, driverLicense, drivingExperience, (Car) transport);
+    public DriverB(String name, boolean driverLicense, int drivingExperience, Car transport) {
+        super(name, driverLicense, drivingExperience, transport);
     }
 
     public void startMoving() {

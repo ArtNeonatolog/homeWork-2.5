@@ -4,22 +4,19 @@ import java.util.Objects;
 
 public class Truck extends PassengerCar implements Competing {
 
-    public enum carrying {CARRYING ("N1 (с полной массой до 3,5 тонн)", "N2 (с полной массой свыше 3,5 до 12 тонн)", "N3 (с полной массой свыше 12 тонн)");
+    public CarryingCapacity carryingCapacity;
 
-        private final String N1;
-
-        private final String N2;
-
-        private final String N3;
-
-        carrying(String n1, String n2, String n3) {
-            N1 = n1;
-            N2 = n2;
-            N3 = n3;
-        }
-    }
-    public Truck(String brand, String model, float engineVolume) {
+    public Truck(String brand, String model, float engineVolume, CarryingCapacity carryingCapacity) {
         super(brand, model, engineVolume);
+        this.carryingCapacity = carryingCapacity;
+    }
+
+    public CarryingCapacity getCarryingCapacity() {
+        return carryingCapacity;
+    }
+
+    public void setCarryingCapacity(CarryingCapacity carryingCapacity) {
+        this.carryingCapacity = carryingCapacity;
     }
 
     public final int MAX_SPEED = 150;
@@ -63,6 +60,16 @@ public class Truck extends PassengerCar implements Competing {
         if (!super.equals(o)) return false;
         Truck truck = (Truck) o;
         return MAX_SPEED == truck.MAX_SPEED;
+    }
+
+    @Override
+    public void determineTheTypeOfCar() {
+        if (carryingCapacity == null) {
+            System.out.println("Данных по авто недостаточно");
+        } else {
+            String from = carryingCapacity.getFrom() == null?"": " от " + carryingCapacity.getFrom();
+            String to = carryingCapacity.getTo() == null?"": " до " + carryingCapacity.getTo();
+            System.out.println("Грузоподъемность грузового автомобиля -" + from + to + " тонн.");}
     }
 
     @Override

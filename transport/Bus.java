@@ -4,30 +4,19 @@ import java.util.Objects;
 
 public class Bus extends PassengerCar implements Competing {
 
-    public enum capacityType {CAPACITY_TYPE ("особо малая (до 10 мест)", "малая (до 25 мест)", "средняя (40–50 мест)",
-            "большая (60–80 мест)", "особо большая (100–120 мест)");
+    private CapacityType capacityType;
 
-        private final String especiallySmall;
-
-        private final String small;
-
-        private final String middle;
-
-        private final String big;
-
-        private final String especiallyBig;
-
-        capacityType(String especiallySmall, String small, String middle, String big, String especiallyBig) {
-            this.especiallySmall = especiallySmall;
-            this.small = small;
-            this.middle = middle;
-            this.big = big;
-            this.especiallyBig = especiallyBig;
-        }
+    public Bus(String brand, String model, float engineVolume, CapacityType capacityType) {
+        super(brand, model, engineVolume);
+        this.capacityType = capacityType;
     }
 
-    public Bus(String brand, String model, float engineVolume) {
-        super(brand, model, engineVolume);
+    public CapacityType getCapacityType() {
+        return capacityType;
+    }
+
+    public void setCapacityType(CapacityType capacityType) {
+        this.capacityType = capacityType;
     }
 
     public final int MAX_SPEED = 100;
@@ -70,6 +59,14 @@ public class Bus extends PassengerCar implements Competing {
         if (!super.equals(o)) return false;
         Bus bus = (Bus) o;
         return MAX_SPEED == bus.MAX_SPEED;
+    }
+
+    @Override
+    public void determineTheTypeOfCar() {
+        if (capacityType == null) {
+            System.out.println("Данных по авто недостаточно");
+        } else {
+            System.out.println("Вместимость автобуса - от " + capacityType.getFrom() + " до " + capacityType.getTo() + " мест.");}
     }
 
     @Override

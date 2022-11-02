@@ -2,11 +2,12 @@ package drivers;
 
 import transport.PassengerCar;
 import transport.Truck;
-public class DriverC extends Driver {
+public class DriverC extends Driver<Truck> {
 
-    public DriverC(String name, boolean driverLicense, int drivingExperience, PassengerCar transport) {
-        super(name, driverLicense, drivingExperience, (Truck) transport);
+    public DriverC(String name, boolean driverLicense, int drivingExperience, Truck transport) {
+        super(name, driverLicense, drivingExperience, transport);
     }
+
     @Override
     public void startMoving() {
         System.out.println("Вставляю ключ в замок зажигания, поворачиваю, удерживаю сцепление, нажимаю педаль газа, начинаю движение");

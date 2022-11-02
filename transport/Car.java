@@ -2,45 +2,17 @@ package transport;
 
 import java.util.Objects;
 
-public class Car extends PassengerCar implements Competing{
 
-    public enum bodyType {BODY_TYPE ("Седан", "Хетчбек", "Купе", "Универсал", "Внедорожник",
-            "Кроссовер", "Пикап", "Фургон", "Минивэн");
+public class Car extends PassengerCar implements Competing {
 
-        private final String type1;
+    private BodyType typeBodyAuto;
 
-        private final String type2;
-
-        private final String type3;
-
-        private final String type4;
-
-        private final String type5;
-
-        private final String type6;
-
-        private final String type7;
-
-        private final String type8;
-
-        private final String type9;
-
-        bodyType(String type1, String type2, String type3, String type4,
-                 String type5, String type6, String type7, String type8, String type9) {
-            this.type1 = type1;
-            this.type2 = type2;
-            this.type3 = type3;
-            this.type4 = type4;
-            this.type5 = type5;
-            this.type6 = type6;
-            this.type7 = type7;
-            this.type8 = type8;
-            this.type9 = type9;
-        }
-    }
-
-    public Car(String brand, String model, float engineVolume) {
+    public Car(String brand, String model, float engineVolume, BodyType typeBodyAuto) {
         super(brand, model, engineVolume);
+        this.typeBodyAuto = typeBodyAuto;
+    }
+    public BodyType getTypeBodyAuto() {
+        return typeBodyAuto;
     }
 
     public final int MAX_SPEED = 300;
@@ -56,7 +28,7 @@ public class Car extends PassengerCar implements Competing{
     }
 
     public void informationOfTheCar() {
-        System.out.println(getBrand() + " " + getModel() + ", объем двигателя - " + getEngineVolume() + " л.");
+        System.out.println(getBrand() + " " + getModel() + ", объем двигателя - " + getEngineVolume() + " л." + ", тип кузова - " + getTypeBodyAuto());
     }
 
     @Override
@@ -80,18 +52,28 @@ public class Car extends PassengerCar implements Competing{
         if (!(o instanceof Car)) return false;
         if (!super.equals(o)) return false;
         Car car = (Car) o;
-        return MAX_SPEED == car.MAX_SPEED;
+        return MAX_SPEED == car.MAX_SPEED && typeBodyAuto == car.typeBodyAuto;
+    }
+
+    @Override
+    public void determineTheTypeOfCar() {
+        if (typeBodyAuto == null) {
+            System.out.println("Данных по авто недостаточно.");
+        } else {
+        System.out.println("Тип кузова автомобиля - " + getTypeBodyAuto() + ".");}
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), MAX_SPEED);
+        return Objects.hash(super.hashCode(), typeBodyAuto, MAX_SPEED);
     }
 
     @Override
     public String toString() {
-        return "Cars{" +
-                "MAX_SPEED=" + MAX_SPEED +
+        return "Car{" +
+                "typeBodyAuto=" + typeBodyAuto +
+                ", MAX_SPEED=" + MAX_SPEED +
                 "} " + super.toString();
     }
 }

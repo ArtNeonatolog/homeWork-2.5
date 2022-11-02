@@ -4,7 +4,7 @@ import transport.*;
 
 import java.util.Objects;
 
-public abstract class Driver <A extends PassengerCar> {
+public abstract class Driver <A extends Transport & Competing> {
     private final String name;
 
     protected boolean driverLicense;

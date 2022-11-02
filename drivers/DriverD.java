@@ -3,9 +3,9 @@ package drivers;
 import transport.Bus;
 import transport.PassengerCar;
 
-public class DriverD extends Driver {
-    public DriverD(String name, boolean driverLicense, int drivingExperience, PassengerCar transport) {
-        super(name, driverLicense, drivingExperience, (Bus) transport);
+public class DriverD extends Driver<Bus> {
+    public DriverD(String name, boolean driverLicense, int drivingExperience, Bus transport) {
+        super(name, driverLicense, drivingExperience, transport);
     }
 
     @Override

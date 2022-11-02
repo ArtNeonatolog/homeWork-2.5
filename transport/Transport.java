@@ -6,6 +6,7 @@ public abstract class Transport {
 
     private final String brand;
     private final String model;
+
     // private final int productionYear;
     // private final String productionCountry;
     // private String color;
@@ -58,6 +59,7 @@ public abstract class Transport {
         Transport transport = (Transport) o;
         return brand.equals(transport.brand) && model.equals(transport.model);
     }
+    public abstract void determineTheTypeOfCar();
 
     @Override
     public int hashCode() {
